@@ -659,7 +659,6 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 <div class="srv-grid" id="srvGrid">
 <div class="srv-card" data-cat="0" onclick="srvOpen(0)">
 <div class="srv-bar" style="background:var(--perf)"></div>
-<p class="srv-plbl" style="color:var(--perf)">Performance</p>
 <h4>Migrations</h4>
 <p class="srv-sub">How you get onto the platform</p>
 <p class="srv-desc">From on-prem VDI to cloud, Citrix to AVD, or cross-tenant M&amp;A consolidation &#8212; full migration with zero-downtime cutover and complete onboarding.</p>
@@ -667,7 +666,6 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 </div>
 <div class="srv-card" data-cat="1" onclick="srvOpen(1)">
 <div class="srv-bar" style="background:var(--sec)"></div>
-<p class="srv-plbl" style="color:var(--sec)">Security</p>
 <h4>Security</h4>
 <p class="srv-sub">How we build your defense layers</p>
 <p class="srv-desc">Zero Trust, privileged identity management, SIEM/SOAR, DLP, and passwordless authentication &#8212; scoped to your threat profile.</p>
@@ -675,7 +673,6 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 </div>
 <div class="srv-card" data-cat="2" onclick="srvOpen(2)">
 <div class="srv-bar" style="background:var(--comp)"></div>
-<p class="srv-plbl" style="color:var(--comp)">Compliance</p>
 <h4>Compliance</h4>
 <p class="srv-sub">How you become audit-ready</p>
 <p class="srv-desc">Gap analysis through certification &#8212; SOC 2, HIPAA, SOX, DORA, ISO 27001, and CMMC with automated evidence collection.</p>
@@ -683,7 +680,6 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 </div>
 <div class="srv-card" data-cat="3" onclick="srvOpen(3)">
 <div class="srv-bar" style="background:var(--perf)"></div>
-<p class="srv-plbl" style="color:var(--perf)">Performance</p>
 <h4>Infrastructure &amp; DR</h4>
 <p class="srv-sub">How we protect against the unexpected</p>
 <p class="srv-desc">AVD and Citrix deployment, disaster recovery, network optimization, and user experience monitoring for continuous availability.</p>
@@ -691,7 +687,6 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 </div>
 <div class="srv-card" data-cat="4" onclick="srvOpen(4)">
 <div class="srv-bar" style="background:var(--sec)"></div>
-<p class="srv-plbl" style="color:var(--sec)">Security</p>
 <h4>Managed Services</h4>
 <p class="srv-sub">How we provide ongoing protection</p>
 <p class="srv-desc">MDR, managed SOC, compliance monitoring, and incident response retainers &#8212; 24/7 coverage under annual contract.</p>
@@ -825,7 +820,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
 /* ===== SERVICES MASTER-DETAIL ===== */
 ;(function(){
 var srvData=[
-{name:'Migrations',pillar:'Performance',color:'var(--perf)',sub:'How you get onto the platform',services:[
+{name:'Migrations',color:'var(--perf)',sub:'How you get onto the platform',services:[
 {t:'Safe Workspace Migration',d:'Complete implementation to the Safe Workspace platform with zero-downtime cutover and full user onboarding.'},
 {t:'VDI Migration (On-Prem to Cloud)',d:'Migration from physical or virtualized infrastructure to cloud-hosted virtual desktops on Azure.'},
 {t:'Citrix to AVD Migration',d:'Full migration from Citrix to Azure Virtual Desktop, preserving profiles and configurations.'},
@@ -833,7 +828,7 @@ var srvData=[
 {t:'Multi-Site / Global Deployment',d:'Expand Safe Workspace to additional regions with unified governance and multi-region failover.'},
 {t:'Email & Cross-Tenant Migration',d:'Microsoft 365 tenant migrations for M&A or restructuring, plus third-party email migrations.'}
 ]},
-{name:'Security',pillar:'Security',color:'var(--sec)',sub:'How we build your defense layers',services:[
+{name:'Security',color:'var(--sec)',sub:'How we build your defense layers',services:[
 {t:'Zero Trust Architecture',d:'Complete Zero Trust framework replacing traditional VPN with continuous verification.'},
 {t:'Privileged Identity Management',d:'Just-in-time access with approval workflows, credential rotation, and audit trails.'},
 {t:'Microsoft Sentinel SIEM',d:'Centralized threat detection, analytics, and automated incident response with SOAR.'},
@@ -841,7 +836,7 @@ var srvData=[
 {t:'Data Loss Prevention',d:'Microsoft Purview DLP across endpoints, email, and cloud with auto-labeling.'},
 {t:'Passwordless Authentication',d:'Windows Hello, FIDO2 keys, and Authenticator for phishing-resistant access.'}
 ]},
-{name:'Compliance',pillar:'Compliance',color:'var(--comp)',sub:'How you become audit-ready',services:[
+{name:'Compliance',color:'var(--comp)',sub:'How you become audit-ready',services:[
 {t:'Compliance Program',d:'Risk analysis, controls implementation, and audit preparation for your regulatory landscape.'},
 {t:'SOC 2 Type II Preparation',d:'Assessment against trust criteria with gap remediation and evidence automation.'},
 {t:'HIPAA Security Risk Assessment',d:'Comprehensive risk analysis with remediation roadmap and PHI data flow mapping.'},
@@ -849,7 +844,7 @@ var srvData=[
 {t:'Compliance Suite Deployment',d:'Microsoft Purview with evidence collection, control monitoring, and dashboards.'},
 {t:'SOX & Financial Controls',d:'IT general controls, FINRA/SEC configuration, and segregation of duties.'}
 ]},
-{name:'Infrastructure & DR',pillar:'Performance',color:'var(--perf)',sub:'How we protect against the unexpected',services:[
+{name:'Infrastructure & DR',color:'var(--perf)',sub:'How we protect against the unexpected',services:[
 {t:'AVD & Citrix Deployment',d:'Azure Virtual Desktop with Nerdio or Citrix Cloud DaaS with optional NetScaler ADC.'},
 {t:'Nerdio & Cost Optimization',d:'Auto-scaling, reserved instances, savings plans, and intelligent right-sizing.'},
 {t:'DR Architecture & Site Recovery',d:'Multi-region failover, Veeam backup, and Azure Site Recovery with RTO/RPO assurance.'},
@@ -857,7 +852,7 @@ var srvData=[
 {t:'Azure Infrastructure Deployment',d:'VMs, networking, and storage optimized for virtualization workloads.'},
 {t:'ControlUp UX Monitoring',d:'Real-time performance monitoring, session analytics, and automated remediation.'}
 ]},
-{name:'Managed Services',pillar:'Security',color:'var(--sec)',sub:'How we provide ongoing protection',services:[
+{name:'Managed Services',color:'var(--sec)',sub:'How we provide ongoing protection',services:[
 {t:'Managed Detection & Response',d:'24/7 threat monitoring, detection, and active response under annual contract.'},
 {t:'Managed SOC Services',d:'Fully managed Security Operations Center powered by Sentinel.'},
 {t:'Managed Compliance Monitoring',d:'Continuous compliance posture monitoring and regulatory reporting.'},
@@ -879,7 +874,7 @@ function scrollToServices(){
 
 function renderPanel(idx){
   var cat=srvData[idx];
-  panel.innerHTML='<div class="srv-panel-fade"><div class="srv-panel-header"><p class="srv-plbl" style="color:'+cat.color+'">'+cat.pillar+'</p><h3>'+cat.name+'</h3></div><div class="srv-detail-grid">'+cat.services.map(function(s){return '<div class="srv-detail-card"><h5>'+s.t+'</h5><p>'+s.d+'</p></div>'}).join('')+'</div></div>';
+  panel.innerHTML='<div class="srv-panel-fade"><div class="srv-panel-header"><h3>'+cat.name+'</h3></div><div class="srv-detail-grid">'+cat.services.map(function(s){return '<div class="srv-detail-card"><h5>'+s.t+'</h5><p>'+s.d+'</p></div>'}).join('')+'</div></div>';
 }
 
 function setActiveNav(idx){
