@@ -253,16 +253,61 @@ nav .ctn{display:flex;align-items:center;justify-content:space-between}
 .tls:nth-child(5) .tld{border-color:var(--comp);color:var(--comp)}
 .tls h4{font-size:.9rem;margin-bottom:.25rem}.tls p{font-size:.75rem;line-height:1.45}
 
-/* SERVICES */
-.stabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.5rem;justify-content:center}
-.stb{font-family:var(--fH);font-size:.82rem;font-weight:500;padding:.55rem 1.1rem;border:1px solid var(--bdr);border-radius:100px;background:var(--white);color:var(--txt2);cursor:pointer;transition:all .2s}
-.stb:hover{border-color:var(--sec);color:var(--sec)}.stb.act{background:var(--sec);color:#fff;border-color:var(--sec)}
-.tcnt{display:none}.tcnt.act{display:block}
-.thd{margin-bottom:1.25rem}
-.tpl{font-family:var(--fH);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem}
-.tsub{font-size:.88rem;color:var(--txtL);font-style:italic}
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
-.sc{padding:1.25rem;border-radius:var(--r);border:1px solid var(--bdr);background:var(--white)}.sc h4{font-size:.88rem;margin-bottom:.25rem}.sc p{font-size:.8rem;line-height:1.55}
+/* SERVICES — Master-Detail */
+.srv-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.25rem}
+.srv-card{padding:1.5rem;border-radius:var(--rL);border:1px solid var(--bdr);background:var(--white);cursor:pointer;transition:all .3s;display:flex;flex-direction:column}
+.srv-card:hover{box-shadow:0 6px 24px rgba(0,74,173,.1);transform:translateY(-3px);border-color:rgba(0,74,173,.15)}
+.srv-card .srv-bar{height:4px;border-radius:2px;margin-bottom:1rem}
+.srv-card .srv-plbl{font-family:var(--fH);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.srv-card h4{font-family:var(--fH);font-size:1rem;font-weight:600;margin-bottom:.25rem;color:var(--txt)}
+.srv-card .srv-sub{font-size:.86rem;color:var(--txtL);font-style:italic;margin-bottom:.65rem;line-height:1.5}
+.srv-card .srv-desc{font-size:.86rem;line-height:1.65;color:var(--txt2);flex:1}
+.srv-card .srv-cta{font-family:var(--fH);font-size:.82rem;font-weight:600;color:var(--sec);margin-top:1rem;display:inline-flex;align-items:center;gap:.35rem;transition:gap .2s}
+.srv-card:hover .srv-cta{gap:.6rem}
+.srv-card:nth-child(-n+3){grid-column:span 2}
+.srv-card:nth-child(4){grid-column:2/4}
+.srv-card:nth-child(5){grid-column:4/6}
+
+/* Detail View */
+.srv-detail{display:none;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease}
+.srv-detail.active{display:flex;gap:0}
+.srv-detail.visible{opacity:1;transform:translateY(0)}
+.srv-sidebar{width:280px;flex-shrink:0;display:flex;flex-direction:column;gap:.5rem;padding-right:2rem;border-right:1px solid var(--bdr)}
+.srv-nav-btn{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:none;background:transparent;border-radius:var(--r);cursor:pointer;text-align:left;transition:all .25s;width:100%}
+.srv-nav-btn:hover{background:var(--subtle)}
+.srv-nav-btn.active{background:var(--blue-t)}
+.srv-nav-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.srv-nav-info{display:flex;flex-direction:column}
+.srv-nav-name{font-family:var(--fH);font-size:.88rem;font-weight:600;color:var(--txt)}
+.srv-nav-sub{font-size:.76rem;color:var(--txtL);font-style:italic}
+.srv-back{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;padding:.7rem 1rem;border:none;background:transparent;font-family:var(--fH);font-size:.82rem;font-weight:500;color:var(--sec);cursor:pointer;border-radius:var(--r);transition:background .2s}
+.srv-back:hover{background:var(--subtle)}
+.srv-panel{flex:1;padding-left:2rem;min-width:0}
+.srv-panel-header{margin-bottom:1.5rem}
+.srv-panel-header .srv-plbl{font-family:var(--fH);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.srv-panel-header h3{font-size:1.3rem}
+.srv-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.srv-detail-card{padding:1.25rem;border-radius:var(--r);border:1px solid var(--bdr);background:var(--white);transition:box-shadow .25s,border-color .25s}
+.srv-detail-card:hover{box-shadow:0 4px 16px rgba(0,74,173,.06);border-color:rgba(0,74,173,.12)}
+.srv-detail-card h5{font-family:var(--fH);font-size:.9rem;font-weight:600;color:var(--txt);margin-bottom:.35rem}
+.srv-detail-card p{font-size:.82rem;line-height:1.6;color:var(--txt2)}
+.srv-panel-fade{animation:srvFadeIn .3s ease}
+@keyframes srvFadeIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+
+/* Mobile Accordion */
+.srv-accordion{display:none}
+.srv-acc-item{border-bottom:1px solid var(--bdr)}
+.srv-acc-btn{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;cursor:pointer;width:100%;background:none;border:none;text-align:left;font-family:var(--fH);font-size:.95rem;font-weight:500;color:var(--txt);transition:color .2s;gap:.75rem}
+.srv-acc-btn:hover{color:var(--sec)}
+.srv-acc-btn .srv-acc-left{display:flex;align-items:center;gap:.65rem}
+.srv-acc-btn .srv-acc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.srv-acc-btn .srv-acc-name{display:flex;flex-direction:column}
+.srv-acc-btn .srv-acc-name span:last-child{font-size:.78rem;font-weight:400;color:var(--txtL);font-style:italic}
+.srv-acc-icon{transition:transform .3s;flex-shrink:0}
+.srv-acc-item.open .srv-acc-icon{transform:rotate(180deg)}
+.srv-acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.srv-acc-item.open .srv-acc-body{max-height:2000px}
+.srv-acc-cards{padding:0 0 1.25rem;display:grid;grid-template-columns:1fr;gap:.75rem}
 
 /* INDUSTRIES */
 .ibdg{font-family:var(--fH);font-size:.6rem;font-weight:600;padding:.18rem .4rem;border-radius:4px;background:rgba(0,74,173,.07);color:var(--sec);letter-spacing:.04em}
@@ -320,7 +365,8 @@ footer{background:var(--txt);color:rgba(255,255,255,.6);padding:3.5rem 0 2rem}
 .hero-stats{grid-template-columns:repeat(4,1fr)}
 .plgrid,.tgrid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
 .sw-hero{grid-template-columns:1fr}.sw-hero-visual{min-height:240px}
-.qstrip{grid-template-columns:repeat(2,1fr)}.sw-inc-grid,.sgrid,.dgrid,.blg-grid{grid-template-columns:repeat(2,1fr)!important}
+.qstrip{grid-template-columns:repeat(2,1fr)}.sw-inc-grid,.dgrid,.blg-grid{grid-template-columns:repeat(2,1fr)!important}
+.srv-grid,.srv-detail{display:none!important}.srv-accordion{display:block}
 .sw-extras,.bl-extras{grid-template-columns:1fr}
 .ba-grid{grid-template-columns:1fr;border-radius:var(--rL)}.ba-divider{height:2px;width:100%}
 .tl{flex-direction:column;align-items:flex-start;gap:1.25rem;padding-left:40px}
@@ -337,7 +383,7 @@ nav.open .nlinks a{color:rgba(255,255,255,.7)}nav.open .nlinks a:hover{color:#ff
 .hero{min-height:auto;padding:7rem 0 3rem}
 .hero-stats{grid-template-columns:repeat(2,1fr)}
 .hero-btns{flex-direction:column}.hero-btns .btn{width:100%;justify-content:center}
-.pgrid,.blgrid,.sgrid,.dgrid,.qstrip,.sw-inc-grid,.blg-grid{grid-template-columns:1fr!important}
+.pgrid,.blgrid,.dgrid,.qstrip,.sw-inc-grid,.blg-grid{grid-template-columns:1fr!important}
 .fgrid{grid-template-columns:1fr;gap:1.25rem}.fbot{flex-direction:column;gap:.5rem}
 .modal-overlay{padding:.5rem}.modal-box{max-height:95vh;border-radius:var(--r)}
 section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
@@ -419,7 +465,7 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 <nav id="nb" role="navigation" aria-label="Main navigation"><div class="ctn">
 <a href="/" class="nlogo" aria-label="Trisian home" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">TRISIAN</a>
 <div class="nlinks">
-<a href="#pillars">Three Pillars</a><a href="#workspace">Safe Workspace</a><a href="#tiers">Tiers</a><a href="services.html">Services</a><a href="#industries">Industries</a><a href="#blog">Insights</a><a href="assess.html">Quick Assessment</a>
+<a href="#pillars">Three Pillars</a><a href="#workspace">Safe Workspace</a><a href="#tiers">Tiers</a><a href="#services">Services</a><a href="#industries">Industries</a><a href="#blog">Insights</a><a href="assess.html">Quick Assessment</a>
 <a href="assess.html" class="nav-cta">Schedule Assessment <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
 </div>
 <button class="mtog" aria-label="Toggle menu" aria-expanded="false" onclick="var n=document.getElementById('nb');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))"><span></span><span></span><span></span></button>
@@ -608,14 +654,60 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 <section id="services"><div class="ctn">
 <div class="shdr"><p class="lbl">Professional Services</p><h2>Strategic Projects. Measurable Outcomes.</h2>
 <p class="sub">Beyond managed Safe Workspace, Trisian delivers project-based engagements that fundamentally transform your environment.</p></div>
-<div class="sgrid" style="grid-template-columns:repeat(5,1fr)">
-<div class="sc"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><h4>Migrations</h4></div><p class="tsub" style="margin-bottom:.5rem">How you get onto the platform</p><p>From on-prem VDI to cloud, Citrix to AVD, or cross-tenant M&amp;A consolidation &#8212; we handle the full migration with zero-downtime cutover and complete user onboarding.</p></div>
-<div class="sc"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h4>Security</h4></div><p class="tsub" style="margin-bottom:.5rem">How we build your defense layers</p><p>Zero Trust architecture, privileged identity management, SIEM/SOAR deployment, DLP implementation, and passwordless authentication &#8212; scoped to your threat profile and compliance requirements.</p></div>
-<div class="sc"><div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><h4>Compliance</h4></div><p class="tsub" style="margin-bottom:.5rem">How you become audit-ready</p><p>From initial gap analysis through certification preparation &#8212; SOC 2, HIPAA, SOX, DORA, ISO 27001, GDPR, and CMMC programs with automated evidence collection and control mapping.</p></div>
-<div class="sc"><div class="sc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg><h4>Infrastructure &amp; DR</h4></div><p class="tsub" style="margin-bottom:.5rem">How we protect against the unexpected</p><p>AVD and Citrix deployment, disaster recovery architecture, network optimization, and real-time user experience monitoring &#8212; engineered for continuous availability.</p></div>
-<div class="sc"><div class="sc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><h4>Managed Services</h4></div><p class="tsub" style="margin-bottom:.5rem">How we provide ongoing protection</p><p>Managed detection and response, managed SOC, continuous compliance monitoring, and incident response retainers &#8212; 24/7 coverage under annual contract.</p></div>
+
+<!-- State 1: Card Grid (desktop) -->
+<div class="srv-grid" id="srvGrid">
+<div class="srv-card" data-cat="0" onclick="srvOpen(0)">
+<div class="srv-bar" style="background:var(--perf)"></div>
+<p class="srv-plbl" style="color:var(--perf)">Performance</p>
+<h4>Migrations</h4>
+<p class="srv-sub">How you get onto the platform</p>
+<p class="srv-desc">From on-prem VDI to cloud, Citrix to AVD, or cross-tenant M&amp;A consolidation &#8212; full migration with zero-downtime cutover and complete onboarding.</p>
+<span class="srv-cta">Explore Services &#8594;</span>
 </div>
-<div style="text-align:center;margin-top:1.5rem"><a href="services.html" class="btn bo" style="font-size:.85rem;padding:.7rem 1.8rem">See Full Service Details <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+<div class="srv-card" data-cat="1" onclick="srvOpen(1)">
+<div class="srv-bar" style="background:var(--sec)"></div>
+<p class="srv-plbl" style="color:var(--sec)">Security</p>
+<h4>Security</h4>
+<p class="srv-sub">How we build your defense layers</p>
+<p class="srv-desc">Zero Trust, privileged identity management, SIEM/SOAR, DLP, and passwordless authentication &#8212; scoped to your threat profile.</p>
+<span class="srv-cta">Explore Services &#8594;</span>
+</div>
+<div class="srv-card" data-cat="2" onclick="srvOpen(2)">
+<div class="srv-bar" style="background:var(--comp)"></div>
+<p class="srv-plbl" style="color:var(--comp)">Compliance</p>
+<h4>Compliance</h4>
+<p class="srv-sub">How you become audit-ready</p>
+<p class="srv-desc">Gap analysis through certification &#8212; SOC 2, HIPAA, SOX, DORA, ISO 27001, and CMMC with automated evidence collection.</p>
+<span class="srv-cta">Explore Services &#8594;</span>
+</div>
+<div class="srv-card" data-cat="3" onclick="srvOpen(3)">
+<div class="srv-bar" style="background:var(--perf)"></div>
+<p class="srv-plbl" style="color:var(--perf)">Performance</p>
+<h4>Infrastructure &amp; DR</h4>
+<p class="srv-sub">How we protect against the unexpected</p>
+<p class="srv-desc">AVD and Citrix deployment, disaster recovery, network optimization, and user experience monitoring for continuous availability.</p>
+<span class="srv-cta">Explore Services &#8594;</span>
+</div>
+<div class="srv-card" data-cat="4" onclick="srvOpen(4)">
+<div class="srv-bar" style="background:var(--sec)"></div>
+<p class="srv-plbl" style="color:var(--sec)">Security</p>
+<h4>Managed Services</h4>
+<p class="srv-sub">How we provide ongoing protection</p>
+<p class="srv-desc">MDR, managed SOC, compliance monitoring, and incident response retainers &#8212; 24/7 coverage under annual contract.</p>
+<span class="srv-cta">Explore Services &#8594;</span>
+</div>
+</div>
+
+<!-- State 2: Detail View (desktop) -->
+<div class="srv-detail" id="srvDetail">
+<div class="srv-sidebar" id="srvSidebar"></div>
+<div class="srv-panel" id="srvPanel"></div>
+</div>
+
+<!-- Mobile Accordion -->
+<div class="srv-accordion" id="srvAccordion"></div>
+
 </div></section>
 
 
@@ -681,7 +773,7 @@ section [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!impor
 <footer role="contentinfo"><div class="ctn">
 <div class="fgrid">
 <div class="fbrand"><div class="nlogo" style="color:#fff;margin-bottom:.5rem">TRISIAN</div><p>Your digital environment. Our total responsibility.</p></div>
-<div class="fcol"><h5>Product</h5><a href="#workspace">Safe Workspace</a><a href="#tiers">Core Tier</a><a href="#tiers">Advanced Tier</a><a href="#tiers">Enterprise Tier</a><a href="services.html">Professional Services</a></div>
+<div class="fcol"><h5>Product</h5><a href="#workspace">Safe Workspace</a><a href="#tiers">Core Tier</a><a href="#tiers">Advanced Tier</a><a href="#tiers">Enterprise Tier</a><a href="#services">Professional Services</a></div>
 <div class="fcol"><h5>Industries</h5><a href="#industries">Financial Services</a><a href="#industries">Healthcare</a><a href="#industries">Legal Services</a><a href="#industries">Growing Businesses</a></div>
 <div class="fcol"><h5>Company</h5><a href="#pillars">Why Trisian</a><a href="#blog">Insights</a><a href="assess.html">Free Assessment</a><a href="mailto:contact@trisian.com">contact@trisian.com</a></div>
 </div>
@@ -730,6 +822,124 @@ function openModal(){var m=document.getElementById('cmpModal');m.style.display='
 function closeModal(){var m=document.getElementById('cmpModal');m.classList.remove('open');setTimeout(()=>{m.style.display='none';document.body.style.overflow=''},300)}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
 
+/* ===== SERVICES MASTER-DETAIL ===== */
+;(function(){
+var srvData=[
+{name:'Migrations',pillar:'Performance',color:'var(--perf)',sub:'How you get onto the platform',services:[
+{t:'Safe Workspace Migration',d:'Complete implementation to the Safe Workspace platform with zero-downtime cutover and full user onboarding.'},
+{t:'VDI Migration (On-Prem to Cloud)',d:'Migration from physical or virtualized infrastructure to cloud-hosted virtual desktops on Azure.'},
+{t:'Citrix to AVD Migration',d:'Full migration from Citrix to Azure Virtual Desktop, preserving profiles and configurations.'},
+{t:'VMware Horizon Migration',d:'Migration from VMware Horizon to AVD with infrastructure redesign and application repackaging.'},
+{t:'Multi-Site / Global Deployment',d:'Expand Safe Workspace to additional regions with unified governance and multi-region failover.'},
+{t:'Email & Cross-Tenant Migration',d:'Microsoft 365 tenant migrations for M&A or restructuring, plus third-party email migrations.'}
+]},
+{name:'Security',pillar:'Security',color:'var(--sec)',sub:'How we build your defense layers',services:[
+{t:'Zero Trust Architecture',d:'Complete Zero Trust framework replacing traditional VPN with continuous verification.'},
+{t:'Privileged Identity Management',d:'Just-in-time access with approval workflows, credential rotation, and audit trails.'},
+{t:'Microsoft Sentinel SIEM',d:'Centralized threat detection, analytics, and automated incident response with SOAR.'},
+{t:'Defender XDR Integration',d:'Unified security across endpoints, email, identity, and cloud applications.'},
+{t:'Data Loss Prevention',d:'Microsoft Purview DLP across endpoints, email, and cloud with auto-labeling.'},
+{t:'Passwordless Authentication',d:'Windows Hello, FIDO2 keys, and Authenticator for phishing-resistant access.'}
+]},
+{name:'Compliance',pillar:'Compliance',color:'var(--comp)',sub:'How you become audit-ready',services:[
+{t:'Compliance Program',d:'Risk analysis, controls implementation, and audit preparation for your regulatory landscape.'},
+{t:'SOC 2 Type II Preparation',d:'Assessment against trust criteria with gap remediation and evidence automation.'},
+{t:'HIPAA Security Risk Assessment',d:'Comprehensive risk analysis with remediation roadmap and PHI data flow mapping.'},
+{t:'Compliance Gap Analysis',d:'Assessment against HIPAA, SOC 2, PCI-DSS, DORA, SOX with remediation plan.'},
+{t:'Compliance Suite Deployment',d:'Microsoft Purview with evidence collection, control monitoring, and dashboards.'},
+{t:'SOX & Financial Controls',d:'IT general controls, FINRA/SEC configuration, and segregation of duties.'}
+]},
+{name:'Infrastructure & DR',pillar:'Performance',color:'var(--perf)',sub:'How we protect against the unexpected',services:[
+{t:'AVD & Citrix Deployment',d:'Azure Virtual Desktop with Nerdio or Citrix Cloud DaaS with optional NetScaler ADC.'},
+{t:'Nerdio & Cost Optimization',d:'Auto-scaling, reserved instances, savings plans, and intelligent right-sizing.'},
+{t:'DR Architecture & Site Recovery',d:'Multi-region failover, Veeam backup, and Azure Site Recovery with RTO/RPO assurance.'},
+{t:'Network Architecture & SD-WAN',d:'LAN/WAN optimization for VDI, ExpressRoute, and software-defined WAN.'},
+{t:'Azure Infrastructure Deployment',d:'VMs, networking, and storage optimized for virtualization workloads.'},
+{t:'ControlUp UX Monitoring',d:'Real-time performance monitoring, session analytics, and automated remediation.'}
+]},
+{name:'Managed Services',pillar:'Security',color:'var(--sec)',sub:'How we provide ongoing protection',services:[
+{t:'Managed Detection & Response',d:'24/7 threat monitoring, detection, and active response under annual contract.'},
+{t:'Managed SOC Services',d:'Fully managed Security Operations Center powered by Sentinel.'},
+{t:'Managed Compliance Monitoring',d:'Continuous compliance posture monitoring and regulatory reporting.'},
+{t:'Incident Response Retainer',d:'Pre-paid response hours with guaranteed SLA for immediate containment.'}
+]}
+];
+
+var grid=document.getElementById('srvGrid');
+var detail=document.getElementById('srvDetail');
+var sidebar=document.getElementById('srvSidebar');
+var panel=document.getElementById('srvPanel');
+var accordion=document.getElementById('srvAccordion');
+var activeCat=-1;
+
+function scrollToServices(){
+  var s=document.getElementById('services');
+  if(s)window.scrollTo({top:s.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
+}
+
+function renderPanel(idx){
+  var cat=srvData[idx];
+  panel.innerHTML='<div class="srv-panel-fade"><div class="srv-panel-header"><p class="srv-plbl" style="color:'+cat.color+'">'+cat.pillar+'</p><h3>'+cat.name+'</h3></div><div class="srv-detail-grid">'+cat.services.map(function(s){return '<div class="srv-detail-card"><h5>'+s.t+'</h5><p>'+s.d+'</p></div>'}).join('')+'</div></div>';
+}
+
+function setActiveNav(idx){
+  activeCat=idx;
+  sidebar.querySelectorAll('.srv-nav-btn').forEach(function(b,i){
+    b.classList.toggle('active',i===idx);
+  });
+  renderPanel(idx);
+}
+
+function buildSidebar(){
+  sidebar.innerHTML=srvData.map(function(cat,i){
+    return '<button class="srv-nav-btn" onclick="srvNav('+i+')"><span class="srv-nav-dot" style="background:'+cat.color+'"></span><span class="srv-nav-info"><span class="srv-nav-name">'+cat.name+'</span><span class="srv-nav-sub">'+cat.sub+'</span></span></button>';
+  }).join('')+'<button class="srv-back" onclick="srvClose()">&#8592; Back to Overview</button>';
+}
+
+window.srvOpen=function(idx){
+  grid.style.display='none';
+  detail.style.display='flex';
+  detail.classList.add('active');
+  buildSidebar();
+  setActiveNav(idx);
+  scrollToServices();
+  requestAnimationFrame(function(){requestAnimationFrame(function(){detail.classList.add('visible')})});
+};
+
+window.srvNav=function(idx){
+  setActiveNav(idx);
+};
+
+window.srvClose=function(){
+  detail.classList.remove('visible');
+  setTimeout(function(){
+    detail.style.display='';
+    detail.classList.remove('active');
+    grid.style.display='';
+    activeCat=-1;
+    scrollToServices();
+  },350);
+};
+
+/* Mobile Accordion */
+if(accordion){
+  accordion.innerHTML=srvData.map(function(cat,i){
+    return '<div class="srv-acc-item" data-acc="'+i+'"><button class="srv-acc-btn" onclick="srvAcc('+i+')"><span class="srv-acc-left"><span class="srv-acc-dot" style="background:'+cat.color+'"></span><span class="srv-acc-name"><span>'+cat.name+'</span><span>'+cat.sub+'</span></span></span><span class="srv-acc-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="srv-acc-body"><div class="srv-acc-cards">'+cat.services.map(function(s){return '<div class="srv-detail-card"><h5>'+s.t+'</h5><p>'+s.d+'</p></div>'}).join('')+'</div></div></div>';
+  }).join('');
+}
+
+window.srvAcc=function(idx){
+  var items=accordion.querySelectorAll('.srv-acc-item');
+  items.forEach(function(item,i){
+    if(i===idx){
+      item.classList.toggle('open');
+    }else{
+      item.classList.remove('open');
+    }
+  });
+};
+})();
+
 /* Smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();var href=a.getAttribute('href');if(href&&href.length>1){var t=document.querySelector(href);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'})}document.getElementById('nb').classList.remove('open')})});
 
@@ -740,7 +950,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
   /* Tag story block */
   document.querySelectorAll('.pl-story').forEach(el=>el.classList.add('anim'));
   /* Tag grid children with stagger delays */
-  var grids=['.plgrid','.pgrid','.qstrip','.tgrid','.sgrid','.dgrid','.blgrid','.blg-grid','.sw-inc-grid','.fl'];
+  var grids=['.plgrid','.pgrid','.qstrip','.tgrid','.srv-grid','.dgrid','.blgrid','.blg-grid','.sw-inc-grid','.fl'];
   grids.forEach(g=>{document.querySelectorAll(g).forEach(grid=>{
     Array.from(grid.children).forEach((c,i)=>{c.classList.add('anim','anim-d'+(i<6?i+1:6))})
   })});
